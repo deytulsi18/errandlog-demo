@@ -91,7 +91,13 @@ const loadTasks = () => {
               if (result.isConfirmed) {
                 // console.log(currTaskId);
                 deleteTask(currTaskId);
-                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                Swal.fire(
+                  "Deleted!",
+                  "Your file has been deleted.",
+                  "success"
+                ).then(() => {
+                  location.reload();
+                });
               }
             });
           }
@@ -143,7 +149,6 @@ const deleteTask = (taskId) => {
     }
   });
   localStorage.setItem("tasks", JSON.stringify(tasks));
-  location.reload();
 };
 
 submitBtn.addEventListener("click", (event) => {
