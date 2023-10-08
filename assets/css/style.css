@@ -1,0 +1,303 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  /* outline: 2px solid red; */
+}
+
+/* Fonts */
+
+/*** Montserrat ***/
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXo.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+/*** Poppins ***/
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #888;
+  /* padding: 0.75rem; */
+}
+
+main {
+  /* max-width: 1000px; */
+  /* max-width: 800px; */
+  max-width: 750px;
+  max-height: 1000px;
+  margin: 0 auto;
+  box-shadow: 1px 1px 10px 1px #000;
+  border: none;
+  /* border-radius: 10px; */
+  /* overflow: hidden; */
+  padding: 0.5rem 0;
+  background-color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  color: ghostwhite;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+  color: #ddd;
+  margin: 1rem 0;
+}
+
+.btn {
+  background-color: hsl(214, 70%, 35%);
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  color: ghostwhite;
+  box-shadow: 1px 1px 10px 1px #444;
+  border: 2px solid #ddd;
+  color: ghostwhite;
+  text-align: center;
+  font-style: bold;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn:active {
+  box-shadow: inset 1px 1px 5px 1px rgb(0, 0, 0.1);
+}
+
+.clickable-logo {
+  text-decoration: none;
+}
+
+.logo-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-div img {
+  margin-right: 1rem;
+}
+
+.container-1 {
+  background-color: #333;
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+.container-2 {
+  height: 550px;
+  background-color: #121212;
+  transition: height 0.5s;
+  overflow: hidden;
+}
+.container-2 p {
+  padding: 1rem;
+}
+.collapse-div {
+  height: 0px;
+  /* height: fit-content; */
+}
+.new-post-info-div {
+  color: ghostwhite;
+  background-color: #232323;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  border-top: 2px solid #aaa;
+  border-bottom: 2px solid #aaa;
+}
+
+.form-container {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-div {
+  background-color: #444;
+  color: ghostwhite;
+  padding: 1.5rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-div #postTitle {
+  border: 2.5px solid hsl(333, 100%, 59%);
+  background-color: #111;
+  padding: 0.75rem;
+  color: ghostwhite;
+  width: 100%;
+  outline: none;
+  font-family: sans-serif;
+  margin: 0.5rem auto;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.input-div #postDescription {
+  border: 2.5px solid hsl(333, 100%, 59%);
+  background-color: #111;
+  padding: 0.75rem;
+  color: ghostwhite;
+  outline: none;
+  width: 100%;
+  font-family: sans-serif;
+  margin: 0.5rem auto;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  resize: none;
+}
+
+.input-div .btn {
+  background-color: hsl(120, 53%, 35%);
+  margin: 0 auto;
+}
+
+.container-3 {
+  background-color: #222;
+  padding: 1rem;
+}
+
+.new-task-btn {
+  background-color: hsl(120, 73%, 75%);
+  padding: 1rem;
+  box-shadow: 1px 1px 10px 1px #222;
+  max-width: fit-content;
+  max-height: fit-content;
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.5s;
+}
+
+.active-new-task-btn {
+  transform: rotate(45deg);
+  background-color: hsl(0, 77%, 58%);
+  box-shadow: 1px 1px 10px 1px #111, inset 1px 1px 10px 1px #222;
+  user-select: none;
+}
+
+.errand {
+  margin: 1rem 0.5rem;
+  /* background-color: hsl(326, 50%, 40%); */
+  /* background-color: 	hsl(30, 61%, 45%); */
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px 1px #111;
+}
+.errand .post-title {
+  background-color: hsl(326, 50%, 30%);
+  padding: 1rem;
+  border-radius: 0 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #ddd;
+}
+.errand .post-title .btn {
+  background-color: hsl(333, 74%, 59%);
+  padding: 0.5rem;
+  width: 6.5rem;
+  height: 3rem;
+}
+.errand .post-title .btn:active {
+  background-color: hsl(333, 50%, 50%);
+  box-shadow: inset 1px 1px 10px 1px hsl(333, 75%, 26%);
+}
+.errand .post-desc {
+  background-color: hsl(326, 50%, 40%);
+  padding: 1rem;
+  border-radius: 0 0 10px 10px;
+  border: 2px solid #ddd;
+  border-top: none;
+}
+
+/* .task-regular .post-title {
+}
+.task-regular .post-desc {
+} */
+
+.task-flexible .post-title {
+  background-color: hsl(203, 50%, 30%);
+}
+.task-flexible .post-desc {
+  background-color: hsl(203, 50%, 40%);
+}
+
+.task-trivial .post-title {
+  background-color: hsl(150, 50%, 20%);
+}
+.task-trivial .post-desc {
+  background-color: hsl(150, 50%, 30%);
+}
+
+.task-urgent .post-title {
+  background-color: hsl(0, 50%, 30%);
+}
+.task-urgent .post-desc {
+  background-color: hsl(0, 50%, 40%);
+}
+.post-priority {
+  padding: 0.5rem 1rem;
+  border: 1px solid ghostwhite;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px 10px 0 0;
+  background-color: orange;
+  color: black;
+  border: 2px solid ghostwhite;
+  border-bottom: 0px;
+  box-shadow: 1px 1px 10px 1px #111;
+  /* margin-left: auto; */
+}
