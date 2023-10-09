@@ -10,6 +10,10 @@
   /* outline: 2px solid red; */
 }
 
+:root {
+  --theme: hsl(333, 70%, 47%);
+}
+
 /* Fonts */
 
 /*** Montserrat ***/
@@ -50,12 +54,13 @@ main {
   max-width: 750px;
   max-height: 1000px;
   margin: 0 auto;
-  box-shadow: 1px 1px 10px 1px #000;
+  /* box-shadow: 1px 1px 10px 1px #000; */
   border: none;
   /* border-radius: 10px; */
   /* overflow: hidden; */
   padding: 0.5rem 0;
   background-color: #333;
+  background-color: var(--theme);
 }
 
 h1,
@@ -125,7 +130,8 @@ p {
 }
 
 .container-2 {
-  height: 550px;
+  height: 42.25rem;
+  /* height: fit-content; */
   background-color: #121212;
   transition: height 0.5s;
   overflow: hidden;
@@ -196,8 +202,19 @@ p {
 }
 
 .input-div .btn {
-  background-color: hsl(120, 53%, 35%);
+  background-color: hsl(120, 65%, 40%);
   margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid ghostwhite;
+  box-shadow: 1px 1px 10px 1px #111;
+  border-radius: 20px;
+  margin: 0.5rem auto;
+  font-size: 1.25rem;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.5px;
+  font-weight: bold;
 }
 
 .container-3 {
@@ -250,6 +267,7 @@ p {
   padding: 0.5rem;
   width: 6.5rem;
   height: 3rem;
+  word-wrap: break-word;
 }
 .errand .post-title .btn:active {
   background-color: hsl(333, 50%, 50%);
@@ -261,6 +279,7 @@ p {
   border-radius: 0 0 10px 10px;
   border: 2px solid #ddd;
   border-top: none;
+  word-wrap: break-word;
 }
 
 /* .task-regular .post-title {
@@ -300,4 +319,41 @@ p {
   border-bottom: 0px;
   box-shadow: 1px 1px 10px 1px #111;
   /* margin-left: auto; */
+}
+#dropdown-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#postPriority {
+  background-color: orange;
+  padding: 1rem;
+  border: 2px solid ghostwhite;
+  box-shadow: 1px 1px 10px 1px #111;
+  border-radius: 5px;
+  margin: 0.5rem auto;
+  font-size: 1.125rem;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+#postPriority option {
+  font-size: 1.125rem;
+  color: black;
+  padding: 1rem;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.5px;
+}
+#postPriority option:nth-child(even) {
+  background-color: #888;
+  color: ghostwhite;
+  border: 2px solid black;
+}
+#postPriority option:nth-child(odd) {
+  background-color: #ccc;
+  color: black;
+  border: 2px solid black;
 }

@@ -45,15 +45,17 @@ const loadTasks = () => {
       container3.innerHTML = myHTML + container3.innerHTML;
     });
 
-    document.querySelectorAll(".errand").forEach((elem) => {
+    document.querySelectorAll(".view-btn").forEach((elem) => {
+      const parentOfParent = elem.parentElement.parentElement;
+      // console.log(parentOfParent);
       elem.addEventListener("click", () => {
-        const currTaskTitle = elem
+        const currTaskTitle = parentOfParent
           .querySelector(".post-title")
           .querySelector("h3").innerText;
-        const currTaskDesc = elem
+        const currTaskDesc = parentOfParent
           .querySelector(".post-desc")
           .querySelector("p").innerText;
-        const classNamesOfElem = elem.className;
+        const classNamesOfElem = parentOfParent.className;
         const currTaskId = classNamesOfElem.slice(
           0,
           classNamesOfElem.indexOf(" ", 0)
@@ -62,6 +64,7 @@ const loadTasks = () => {
         Swal.fire({
           icon: "warning",
           title: `${currTaskTitle}`,
+          // [Id: ${currTaskId}]<br>`,
           text: `${currTaskDesc}`,
           showCloseButton: true,
           confirmButtonColor: "#3085d6",

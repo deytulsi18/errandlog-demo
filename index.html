@@ -56,7 +56,7 @@
       <div class="container-2 collapse-div">
         <div class="new-post-info-div">
           <span style="font-size: 20px"> &#127817;</span>
-          <span>So you want to add a new post!</span>
+          <span>So you want to add a new task!</span>
           <span style="font-size: 20px">&#127827;</span>
         </div>
         <div class="form-container">
@@ -81,13 +81,16 @@
 
             <br /><br />
 
-            <label for="cars">Choose a priority:</label>
-            <select name="postPriority" id="postPriority">
-              <option value="regular">Regular</option>
-              <option value="urgent">Urgent</option>
-              <option value="flexible">Flexible</option>
-              <option value="trivial">Trivial</option>
-            </select>
+            <div id="dropdown-div">
+              <label for="cars">Choose a priority:</label>
+              <br />
+              <select name="postPriority" id="postPriority">
+                <option value="regular">Regular</option>
+                <option value="urgent">Urgent</option>
+                <option value="flexible">Flexible</option>
+                <option value="trivial">Trivial</option>
+              </select>
+            </div>
 
             <input
               type="submit"
@@ -101,7 +104,7 @@
 
       <div class="container-3">
         <h3>Sample Tasks:</h3>
-        <div class="errand task-flexible">
+        <div class="001 errand task-flexible">
           <div class="post-priority">flexible</div>
           <div class="post-title">
             <h3>Do the dishes</h3>
@@ -112,7 +115,7 @@
           </div>
         </div>
 
-        <div class="errand task-trivial">
+        <div class="002 errand task-trivial">
           <div class="post-priority">trivial</div>
           <div class="post-title">
             <h3>Eat fruits</h3>
@@ -123,7 +126,7 @@
           </div>
         </div>
 
-        <div class="errand task-urgent">
+        <div class="003 errand task-urgent">
           <div class="post-priority">urgent</div>
           <div class="post-title">
             <h3>Buy groceries</h3>
