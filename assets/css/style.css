@@ -286,6 +286,18 @@ p {
   word-wrap: break-word;
 }
 
+.view-btn-static {
+  background-color: hsl(333, 60%, 47%);
+  padding: 0.5rem;
+  width: 6.5rem;
+  height: 3rem;
+  word-wrap: break-word;
+}
+.view-btn-static:active {
+  background-color: hsl(333, 50%, 50%);
+  box-shadow: inset 1px 1px 10px 1px hsl(333, 75%, 26%);
+}
+
 /* .task-regular .post-title {
 }
 .task-regular .post-desc {
