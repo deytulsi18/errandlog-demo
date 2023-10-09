@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ErrandLog is a productivity web app that mainly helps to keep track of your tasks and chores throughout your day.">
+    <meta
+      name="description"
+      content="ErrandLog is a productivity web app that mainly helps to keep track of your tasks and chores throughout your day."
+    />
 
     <meta property="og:image" itemprop="image" content="/assets/img/logo.png" />
     <meta property="og:updated_time" content="1440432930" />
@@ -41,9 +44,8 @@
     <style>
       .install-btn-container {
         display: none;
-        padding: 1rem;
-        padding-bottom: 0.5rem;
-        margin-top: -1rem;
+        padding: 1.25rem;
+        margin-top: -0.6rem;
       }
 
       #install {
@@ -51,7 +53,7 @@
         border: 3px solid white;
         box-shadow: 1px 1px 10px 5px hsla(0, 0%, 0%, 0.25);
         border-radius: 10px;
-        padding: 0.5rem 3rem;
+        padding: 0.25rem 2rem;
         margin: 0 auto;
         background-color: hsl(118, 50%, 40%);
         color: white;
@@ -64,11 +66,10 @@
         font-family: Calibri, sans-serif;
         transition: 0.3s ease-in;
         cursor: pointer;
-        transform: scale(75%);
       }
 
       #install span {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: bold;
         font-family: "Montserrat", sans-serif;
         padding-left: 1rem;
@@ -81,7 +82,21 @@
       }
 
       #install svg {
-        width: 4rem;
+        width: 3rem;
+      }
+
+      @media only screen and (max-width: 300px) {
+        .install-btn-container {
+          padding: 1rem;
+          margin-top: -0.65rem;
+        }
+        #install span {
+          font-size: 1rem;
+          padding-left: 0.5rem;
+        }
+        #install svg {
+          width: 2rem;
+        }
       }
     </style>
   </head>
@@ -112,19 +127,8 @@
           <div class="logo-div">
             <img src="./assets/img/logo.png" alt="suitcase-img" width="60px" />
             <span>
-              <h1 style="color: #e4498f">ErrandLog</h1>
-              <h2
-                style="
-                  color: hsl(332, 55%, 80%);
-                  font-style: italic;
-                  letter-spacing: 1px;
-                  word-spacing: 3px;
-                  padding-top: 0.5rem;
-                  font-size: 1rem;
-                "
-              >
-                Don't forget your chores!
-              </h2>
+              <h1>ErrandLog</h1>
+              <h2>Don't forget your chores!</h2>
             </span>
           </div>
         </a>
@@ -195,7 +199,9 @@
           <div class="post-priority">flexible</div>
           <div class="post-title">
             <h3>Do the dishes</h3>
-            <div role="button" tabindex="0" class="view-btn-static btn">View</div>
+            <div role="button" tabindex="0" class="view-btn-static btn">
+              View
+            </div>
           </div>
           <div class="post-desc">
             <p>Complete washing the dishes before sunset.</p>
@@ -206,7 +212,9 @@
           <div class="post-priority">trivial</div>
           <div class="post-title">
             <h3>Eat fruits</h3>
-            <div role="button" tabindex="0" class="view-btn-static btn">View</div>
+            <div role="button" tabindex="0" class="view-btn-static btn">
+              View
+            </div>
           </div>
           <div class="post-desc">
             <p>Finish the bananas and apples before dawn.</p>
@@ -217,7 +225,9 @@
           <div class="post-priority">urgent</div>
           <div class="post-title">
             <h3>Buy groceries</h3>
-            <div role="button" tabindex="0" class="view-btn-static btn">View</div>
+            <div role="button" tabindex="0" class="view-btn-static btn">
+              View
+            </div>
           </div>
           <div class="post-desc">
             <p>Visit the shop and buy all required grocery items.</p>

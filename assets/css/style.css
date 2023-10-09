@@ -48,21 +48,14 @@
 body {
   font-family: sans-serif;
   background-color: #888;
-  /* padding: 0.75rem; */
 }
 
 main {
-  /* max-width: 1000px; */
-  /* max-width: 800px; */
   max-width: 750px;
   max-height: 1000px;
   margin: 0 auto;
-  /* box-shadow: 1px 1px 10px 1px #000; */
   border: none;
-  /* border-radius: 10px; */
-  /* overflow: hidden; */
   padding: 0.5rem 0;
-  background-color: #333;
   background-color: hsl(333, 70%, 40%);
 }
 
@@ -112,10 +105,28 @@ p {
   text-decoration: none;
 }
 
+.clickable-logo img {
+  width: 3.25rem;
+  height: 3.25rem;
+}
+
 .logo-div {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.logo-div h1 {
+  color: #e4498f;
+  font-size: 1.5rem;
+}
+
+.logo-div span h2 {
+  color: hsl(332, 55%, 80%);
+  font-style: italic;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+  padding-top: 0.5rem;
+  font-size: 0.75rem;
 }
 
 .logo-div img {
@@ -124,8 +135,6 @@ p {
 
 .container-1 {
   background-color: #333;
-  padding: 1rem;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -134,7 +143,6 @@ p {
 
 .container-2 {
   height: 42.25rem;
-  /* height: fit-content; */
   background-color: #121212;
   transition: height 0.5s;
   overflow: hidden;
@@ -144,7 +152,6 @@ p {
 }
 .collapse-div {
   height: 0px;
-  /* height: fit-content; */
 }
 .new-post-info-div {
   color: ghostwhite;
@@ -226,7 +233,6 @@ p {
 }
 
 .new-task-btn {
-  /* background-color: hsl(120, 73%, 75%); */
   background-color: hsl(125, 50%, 50%);
   padding: 1rem;
   box-shadow: 1px 1px 10px 1px #222;
@@ -251,8 +257,6 @@ p {
 
 .errand {
   margin: 1rem 0.5rem;
-  /* background-color: hsl(326, 50%, 40%); */
-  /* background-color: 	hsl(30, 61%, 45%); */
   background-color: #333;
   border-radius: 10px;
   box-shadow: 1px 1px 10px 1px #111;
@@ -298,11 +302,6 @@ p {
   box-shadow: inset 1px 1px 10px 1px hsl(333, 75%, 26%);
 }
 
-/* .task-regular .post-title {
-}
-.task-regular .post-desc {
-} */
-
 .task-flexible .post-title {
   background-color: hsl(203, 50%, 27%);
 }
@@ -334,7 +333,6 @@ p {
   border: 2px solid ghostwhite;
   border-bottom: 0px;
   box-shadow: 1px 1px 10px 1px #111;
-  /* margin-left: auto; */
 }
 #dropdown-div {
   display: flex;
@@ -373,4 +371,36 @@ p {
   background-color: #ccc;
   color: black;
   border: 2px solid black;
+}
+
+@media only screen and (max-width: 300px) {
+  body {
+    background-color: lightblue;
+  }
+  .container-1 {
+    padding: 1rem;
+  }
+  .container-3 {
+    padding: 0.6rem;
+  }
+  .logo-div span h1 {
+    font-size: 1rem;
+  }
+  .logo-div span h2 {
+    font-size: 0.5rem;
+  }
+  .logo-div img {
+    margin-right: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .new-task-btn {
+    padding: 0.6rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  .new-task-btn svg {
+    width: 1rem;
+    height: 1rem;
+  }
 }
