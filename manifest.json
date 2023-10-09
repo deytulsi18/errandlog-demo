@@ -1,0 +1,78 @@
+{
+  "name": "ErrandLog",
+  "short_name": "ErrandLog",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "categories": [
+    "productivity",
+    "utilities",
+    "lifestyle"
+  ],
+  "description": "ErrandLog is a productivity web app that mainly helps to keep track of your tasks and chores throughout your day.",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/img/icons/icon-72x72.png",
+      "type": "image/png",
+      "sizes": "72x72",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/img/icons/icon-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/img/icons/icon-128x128.png",
+      "type": "image/png",
+      "sizes": "128x128",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/img/icons/icon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/img/icons/icon-152x152.png",
+      "type": "image/png",
+      "sizes": "152x152",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/img/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/img/icons/icon-384x384.png",
+      "type": "image/png",
+      "sizes": "384x384",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/img/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/img/screenshots/screenshot_01.jpg",
+      "sizes": "1080x2400",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/screenshots/screenshot_02.jpg",
+      "sizes": "1080x2400",
+      "type": "image/png"
+    }
+  ]
+}

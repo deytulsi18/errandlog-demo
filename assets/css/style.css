@@ -11,7 +11,10 @@
 }
 
 :root {
-  --theme: hsl(333, 70%, 47%);
+  --theme-shade-1: hsl(333, 70%, 47%);
+  --theme-shade-2: hsl(333, 70%, 40%);
+  --theme-primary: hsl(333, 78%, 49%);
+  --theme-secondary: rgb(228, 73, 143);
 }
 
 /* Fonts */
@@ -60,7 +63,7 @@ main {
   /* overflow: hidden; */
   padding: 0.5rem 0;
   background-color: #333;
-  background-color: var(--theme);
+  background-color: hsl(333, 70%, 40%);
 }
 
 h1,
@@ -202,12 +205,12 @@ p {
 }
 
 .input-div .btn {
-  background-color: hsl(120, 65%, 40%);
+  background-color: hsl(118, 50%, 40%);
   margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1.25rem;
   border: 2px solid ghostwhite;
   box-shadow: 1px 1px 10px 1px #111;
-  border-radius: 20px;
+  border-radius: 15px;
   margin: 0.5rem auto;
   font-size: 1.25rem;
   color: #fff;
@@ -223,7 +226,8 @@ p {
 }
 
 .new-task-btn {
-  background-color: hsl(120, 73%, 75%);
+  /* background-color: hsl(120, 73%, 75%); */
+  background-color: hsl(125, 50%, 50%);
   padding: 1rem;
   box-shadow: 1px 1px 10px 1px #222;
   max-width: fit-content;
@@ -262,14 +266,14 @@ p {
   align-items: center;
   border: 2px solid #ddd;
 }
-.errand .post-title .btn {
-  background-color: hsl(333, 74%, 59%);
+.errand .post-title .view-btn {
+  background-color: hsl(333, 60%, 47%);
   padding: 0.5rem;
   width: 6.5rem;
   height: 3rem;
   word-wrap: break-word;
 }
-.errand .post-title .btn:active {
+.errand .post-title .view-btn:active {
   background-color: hsl(333, 50%, 50%);
   box-shadow: inset 1px 1px 10px 1px hsl(333, 75%, 26%);
 }
@@ -288,17 +292,17 @@ p {
 } */
 
 .task-flexible .post-title {
-  background-color: hsl(203, 50%, 30%);
+  background-color: hsl(203, 50%, 27%);
 }
 .task-flexible .post-desc {
-  background-color: hsl(203, 50%, 40%);
+  background-color: hsl(203, 55%, 35%);
 }
 
 .task-trivial .post-title {
   background-color: hsl(150, 50%, 20%);
 }
 .task-trivial .post-desc {
-  background-color: hsl(150, 50%, 30%);
+  background-color: hsl(150, 55%, 27%);
 }
 
 .task-urgent .post-title {
@@ -328,12 +332,13 @@ p {
 }
 #postPriority {
   background-color: orange;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   border: 2px solid ghostwhite;
   box-shadow: 1px 1px 10px 1px #111;
   border-radius: 5px;
   margin: 0.5rem auto;
-  font-size: 1.125rem;
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
   color: black;
   font-family: "Poppins", sans-serif;
   letter-spacing: 0.5px;
@@ -341,7 +346,7 @@ p {
   cursor: pointer;
 }
 #postPriority option {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: black;
   padding: 1rem;
   font-family: "Poppins", sans-serif;

@@ -3,41 +3,128 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ErrandLog is a productivity web app that mainly helps to keep track of your tasks and chores throughout your day.">
 
-    <link rel="icon" href="./assets/img/suitcase.png" id="icon" />
+    <meta property="og:image" itemprop="image" content="/assets/img/logo.png" />
+    <meta property="og:updated_time" content="1440432930" />
+    <meta name="msapplication-TileImage" content="/assets/img/logo.png" />
+    <meta property="og:site_name" content="ErrandLog" />
+    <meta property="og:title" content="ErrandLog" />
+    <meta property="og:description" content="Task tracker app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="300" />
+    <meta property="og:image:height" content="300" />
+    <!-- <meta property="og:url" content="https://errandlog-demo.netlify.app/" /> -->
 
-    <title>Sample WebApp</title>
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="/assets/img/logo.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#000000" />
+    <meta name="theme-color" content="#000000" />
+
+    <title>ErrandLog</title>
+
+    <link rel="icon" href="./assets/img/logo.png" id="icon" />
 
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"
+    ></script>
     <link
       href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css"
       rel="stylesheet"
     />
+
+    <style>
+      .install-btn-container {
+        display: none;
+        padding: 1rem;
+        padding-bottom: 0.5rem;
+        margin-top: -1rem;
+      }
+
+      #install {
+        font-size: 1.5rem;
+        border: 3px solid white;
+        box-shadow: 1px 1px 10px 5px hsla(0, 0%, 0%, 0.25);
+        border-radius: 10px;
+        padding: 0.5rem 3rem;
+        margin: 0 auto;
+        background-color: hsl(118, 50%, 40%);
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        text-decoration: none;
+        font-family: Calibri, sans-serif;
+        transition: 0.3s ease-in;
+        cursor: pointer;
+        transform: scale(75%);
+      }
+
+      #install span {
+        font-size: 2rem;
+        font-weight: bold;
+        font-family: "Montserrat", sans-serif;
+        padding-left: 1rem;
+        letter-spacing: 1px;
+      }
+
+      #install:active {
+        box-shadow: inset 1px 1px 10px 5px hsla(0, 0%, 0%, 0.25),
+          1px 1px 10px 5px hsla(0, 0%, 0%, 0.125);
+      }
+
+      #install svg {
+        width: 4rem;
+      }
+    </style>
   </head>
   <body>
     <main>
+      <div class="install-btn-container">
+        <div role="button" tabindex="0" href="javascript:void(0);" id="install">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            style="max-width: 10rem"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
+            />
+          </svg>
+          <span>download</span>
+        </div>
+      </div>
       <div class="container-1">
         <a href="/" class="clickable-logo">
           <div class="logo-div">
-            <img
-              src="./assets/img/suitcase.png"
-              alt="suitcase-img"
-              width="60px"
-            />
+            <img src="./assets/img/logo.png" alt="suitcase-img" width="60px" />
             <span>
               <h1 style="color: #e4498f">ErrandLog</h1>
-              <h4
+              <h2
                 style="
                   color: hsl(332, 55%, 80%);
                   font-style: italic;
                   letter-spacing: 1px;
                   word-spacing: 3px;
                   padding-top: 0.5rem;
+                  font-size: 1rem;
                 "
               >
                 Don't forget your chores!
-              </h4>
+              </h2>
             </span>
           </div>
         </a>
@@ -82,7 +169,7 @@
             <br /><br />
 
             <div id="dropdown-div">
-              <label for="cars">Choose a priority:</label>
+              <label for="postPriority">Choose a priority:</label>
               <br />
               <select name="postPriority" id="postPriority">
                 <option value="regular">Regular</option>
@@ -149,5 +236,8 @@
         loadTasks();
       });
     </script>
+
+    <script src="/assets/js/swregis.js"></script>
+    <script src="./sw.js"></script>
   </body>
 </html>
