@@ -213,8 +213,6 @@ submitBtn.addEventListener("click", (event) => {
   const nanoid = customAlphabet(alphabet, 21);
   const id = nanoid();
 
-  console.log(id);
-
   if (title == "" || desc == "") {
     // console.log("Fields cannot be empty.");
     Swal.fire({
