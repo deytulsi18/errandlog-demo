@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #888;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Hello</h1>
+    </main>
+    <script>
+      const main = document.querySelector("main");
+
+      main.innerHTML += "<p>This is a para</p>";
+
+      const insertPostIntoHTMLDynamically = (title, desc, priority, id) => {
+        const errandDiv = document.createElement("div");
+        errandDiv.id = id;
+        errandDiv.classList.add("errand");
+        errandDiv.classList.add(`task-${priority}`);
+
+        const postPriorityDiv = document.createElement("div");
+        postPriorityDiv.classList.add("post-priority");
+        postPriorityDiv.innerText = priority;
+
+        const postTitleDiv = document.createElement("div");
+        postTitleDiv.classList.add("post-title");
+
+        const taskTitleHeading = document.createElement("h3");
+        taskTitleHeading.innerText = title;
+
+        const viewBtnDiv = document.createElement("div");
+        viewBtnDiv.classList.add("view-btn");
+        viewBtnDiv.classList.add("btn");
+        viewBtnDiv.innerText = "View";
+
+        const postDescDiv = document.createElement("div");
+        postDescDiv.classList.add("post-desc");
+
+        const taskDescPara = document.createElement("p");
+        taskDescPara.innerText = desc;
+
+        postDescDiv.appendChild(taskDescPara);
+        postTitleDiv.appendChild(taskTitleHeading);
+        postTitleDiv.appendChild(viewBtnDiv);
+
+        errandDiv.appendChild(postPriorityDiv);
+        errandDiv.appendChild(postTitleDiv);
+        errandDiv.appendChild(postDescDiv);
+
+        //   main.appendChild(errandDiv);
+        container3.insertBefore(errandDiv, container3.firstChild);
+      };
+
+      const errandDiv = document.createElement("div");
+      errandDiv.classList.id = "tabcxyz";
+      errandDiv.classList.add("errand");
+      errandDiv.classList.add("task-regular");
+
+      const postPriorityDiv = document.createElement("div");
+      postPriorityDiv.classList.add("post-priority");
+      postPriorityDiv.innerText = "regular";
+
+      const postTitleDiv = document.createElement("div");
+      postTitleDiv.classList.add("post-title");
+
+      const taskTitleHeading = document.createElement("h3");
+      taskTitleHeading.innerText = "This is the task heading";
+
+      const viewBtnDiv = document.createElement("div");
+      viewBtnDiv.classList.add("view-btn");
+      viewBtnDiv.classList.add("btn");
+      viewBtnDiv.innerText = "View";
+
+      const postDescDiv = document.createElement("div");
+      postDescDiv.classList.add("post-desc");
+
+      const taskDescPara = document.createElement("p");
+      taskDescPara.innerText = "This is the task description.";
+
+      postDescDiv.appendChild(taskDescPara);
+      postTitleDiv.appendChild(taskTitleHeading);
+      postTitleDiv.appendChild(viewBtnDiv);
+
+      errandDiv.appendChild(postPriorityDiv);
+      errandDiv.appendChild(postTitleDiv);
+      errandDiv.appendChild(postDescDiv);
+
+      //   main.appendChild(errandDiv);
+      main.insertBefore(errandDiv, main.firstChild);
+    </script>
+  </body>
+</html>

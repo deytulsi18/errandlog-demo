@@ -7,6 +7,19 @@ const postDesc = document.querySelector("#postDescription");
 const postPriority = document.querySelector("#postPriority");
 const submitBtn = document.querySelector(".submit-btn");
 
+// function for xss protection
+const escapeHtml = (str) => {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;")
+    .replace(/\//g, "&#x2F;");
+};
+
+console.log(escapeHtml("&#128507;"));
+
 const truncateString = (str, maxLength) => {
   if (str.length > maxLength) {
     return str.slice(0, maxLength) + "...";
@@ -22,35 +35,69 @@ const loadTasks = () => {
 
     // Loop through the tasks and add them to the list
     tasks.forEach((task) => {
-      const taskTitle = task.title;
-      const taskDesc = task.desc;
-      const taskPriority = task.priority;
-      const taskId = task.id;
+      // This is for prevention of xss
+      //...
+      const dummyTaskTitleDiv = document.createElement("div");
+      dummyTaskTitleDiv.innerHTML = task.title;
+      const dummyTaskDescDiv = document.createElement("div");
+      dummyTaskDescDiv.innerHTML = task.desc;
+      const dummyTaskPriorityDiv = document.createElement("div");
+      dummyTaskPriorityDiv.innerHTML = task.priority;
+      const dummyTaskIdDiv = document.createElement("div");
+      dummyTaskIdDiv.innerHTML = task.id;
+
+      const taskTitle = escapeHtml(dummyTaskTitleDiv.textContent);
+      const taskDesc = escapeHtml(dummyTaskDescDiv.textContent);
+      const taskPriority = escapeHtml(dummyTaskPriorityDiv.textContent);
+      const taskId = escapeHtml(dummyTaskIdDiv.textContent);
+
+      dummyTaskTitleDiv.remove();
+      dummyTaskDescDiv.remove();
+      dummyTaskPriorityDiv.remove();
+      dummyTaskIdDiv.remove();
+      // ...
 
       // console.log(
       //   `Task:\nTitle: ${taskTitle}\nDesc: ${taskDesc}\nPriority: ${taskPriority}`
       // );
 
       const myHTML = `
-        <div id="t${taskId}" class="errand task-${taskPriority}">
-          <div class="post-priority">${taskPriority}</div>
-          <div class="post-title">
-            <h3>${taskTitle}</h3>
-            <div class="view-btn btn">View</div>
-          </div>
-          <div class="post-desc">
-            <p>${taskDesc}</p>
-          </div>
-        </div>`;
+      <div id="t${taskId}" class="errand task-${taskPriority}">
+      <div class="post-priority">${taskPriority}</div>
+      <div class="post-title">
+        <h3>${taskTitle}</h3>
+        <div class="view-btn btn">View</div>
+      </div>
+      <div class="post-desc">
+        <p>${taskDesc}</p>
+      </div>
+    </div>`;
       container3.innerHTML = myHTML + container3.innerHTML;
     });
 
     // Swal.fire("sucess", "dom content loaded").then(() => {
     tasks.forEach((task) => {
-      const taskTitle = task.title;
-      const taskDesc = task.desc;
-      const taskPriority = task.priority;
-      const taskId = task.id;
+      // This is for prevention of xss
+      // ...
+      const dummyTaskTitleDiv = document.createElement("div");
+      dummyTaskTitleDiv.innerHTML = task.title;
+      const dummyTaskDescDiv = document.createElement("div");
+      dummyTaskDescDiv.innerHTML = task.desc;
+      const dummyTaskPriorityDiv = document.createElement("div");
+      dummyTaskPriorityDiv.innerHTML = task.priority;
+      const dummyTaskIdDiv = document.createElement("div");
+      dummyTaskIdDiv.innerHTML = task.id;
+
+      const taskTitle = dummyTaskTitleDiv.textContent;
+      const taskDesc = dummyTaskDescDiv.textContent;
+      const taskPriority = dummyTaskPriorityDiv.textContent;
+      const taskId = dummyTaskIdDiv.textContent;
+
+      dummyTaskTitleDiv.remove();
+      dummyTaskDescDiv.remove();
+      dummyTaskPriorityDiv.remove();
+      dummyTaskIdDiv.remove();
+      // ...
 
       document
         .querySelector(`#t${taskId} .view-btn`)
@@ -109,10 +156,36 @@ const loadTasks = () => {
 };
 
 const addNewTask = (title, desc, priority, id) => {
-  const taskId = id;
-  const taskPriority = priority;
-  const taskTitle = truncateString(title, 50);
-  const taskDesc = truncateString(desc, 500);
+  // This is for prevention of xss
+  // ...
+  const dummyTaskTitleDiv = document.createElement("div");
+  dummyTaskTitleDiv.innerHTML = title;
+  const dummyTaskDescDiv = document.createElement("div");
+  dummyTaskDescDiv.innerHTML = desc;
+  const dummyTaskPriorityDiv = document.createElement("div");
+  dummyTaskPriorityDiv.innerHTML = priority;
+  const dummyTaskIdDiv = document.createElement("div");
+  dummyTaskIdDiv.innerHTML = id;
+
+  const taskTitle = escapeHtml(
+    truncateString(dummyTaskTitleDiv.textContent, 50)
+  );
+  const taskDesc = escapeHtml(
+    truncateString(dummyTaskDescDiv.textContent, 500)
+  );
+  const taskPriority = escapeHtml(dummyTaskPriorityDiv.textContent);
+  const taskId = escapeHtml(dummyTaskIdDiv.textContent);
+
+  dummyTaskTitleDiv.remove();
+  dummyTaskDescDiv.remove();
+  dummyTaskPriorityDiv.remove();
+  dummyTaskIdDiv.remove();
+  // ...
+
+  // const taskId = id;
+  // const taskPriority = priority;
+  // const taskTitle = truncateString(title, 50);
+  // const taskDesc = truncateString(desc, 500);
 
   // add task to local storage
   localStorage.setItem(
@@ -129,65 +202,65 @@ const addNewTask = (title, desc, priority, id) => {
   );
 
   const myHTML = `
-        <div id="t${taskId}" class="errand task-${priority}">
-          <div class="post-priority">${priority}</div>
-          <div class="post-title">
-            <h3>${taskTitle}</h3>
-            <div class="view-btn btn">View</div>
-          </div>
-          <div class="post-desc">
-            <p>${taskDesc}</p>
-          </div>
-        </div>`;
+  <div id="t${taskId}" class="errand task-${taskPriority}">
+  <div class="post-priority">${taskPriority}</div>
+  <div class="post-title">
+    <h3>${taskTitle}</h3>
+    <div class="view-btn btn">View</div>
+  </div>
+  <div class="post-desc">
+    <p>${taskDesc}</p>
+  </div>
+</div>`;
   container3.innerHTML = myHTML + container3.innerHTML;
-//   document
-//     .querySelector(`#t${taskId} .view-btn`)
-//     .addEventListener("click", () => {
-//       Swal.fire({
-//         icon: "info",
-//         title: `${taskTitle}`,
-//         // [Id: t${taskId}]<br>`,
-//         text: `${taskDesc}`,
-//         html: `${taskDesc}<br><br><div class="swal-footer ${taskPriority}">This task is ${taskPriority}.</div>`,
-//         showCloseButton: true,
-//         confirmButtonColor: "#3085d6",
-//         confirmButtonText: "Completed",
-//         showCancelButton: true,
-//         cancelButtonText: "Exit",
-//         showDenyButton: true,
-//         denyButtonText: "Delete",
-//         denyButtonColor: "#d33",
-//       }).then((result) => {
-//         if (result.isConfirmed) {
-//           Swal.fire({
-//             icon: "success",
-//             title: "Task Completed",
-//             text: "You have sucessfully completed the Task.",
-//           });
-//         } else if (result.isDenied) {
-//           Swal.fire({
-//             title: "Are you sure?",
-//             text: "You won't be able to revert this!",
-//             icon: "warning",
-//             showCancelButton: true,
-//             confirmButtonColor: "#d33",
-//             cancelButtonColor: "#3085d6",
-//             confirmButtonText: "Yes, delete it!",
-//           }).then((result) => {
-//             if (result.isConfirmed) {
-//               deleteTask(taskId);
-//               Swal.fire(
-//                 "Deleted!",
-//                 "Your file has been deleted.",
-//                 "success"
-//               ).then(() => {
-//                 document.querySelector(`#t${taskId}`).remove();
-//               });
-//             }
-//           });
-//         }
-//       });
-//     });
+  document
+    .querySelector(`#t${taskId} .view-btn`)
+    .addEventListener("click", () => {
+      Swal.fire({
+        icon: "info",
+        title: `${taskTitle}`,
+        // [Id: t${taskId}]<br>`,
+        text: `${taskDesc}`,
+        html: `${taskDesc}<br><br><div class="swal-footer ${taskPriority}">This task is ${taskPriority}.</div>`,
+        showCloseButton: true,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Completed",
+        showCancelButton: true,
+        cancelButtonText: "Exit",
+        showDenyButton: true,
+        denyButtonText: "Delete",
+        denyButtonColor: "#d33",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: "success",
+            title: "Task Completed",
+            text: "You have sucessfully completed the Task.",
+          });
+        } else if (result.isDenied) {
+          Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              deleteTask(taskId);
+              Swal.fire(
+                "Deleted!",
+                "Your file has been deleted.",
+                "success"
+              ).then(() => {
+                document.querySelector(`#t${taskId}`).remove();
+              });
+            }
+          });
+        }
+      });
+    });
 };
 
 const deleteTask = (taskId) => {
