@@ -232,7 +232,7 @@ p {
   padding: 1rem;
 }
 
-.new-task-btn {
+.view-form-btn {
   background-color: hsl(125, 50%, 50%);
   padding: 1rem;
   box-shadow: 1px 1px 10px 1px #222;
@@ -248,7 +248,7 @@ p {
   transition: transform 0.5s;
 }
 
-.active-new-task-btn {
+.active-view-form-btn {
   transform: rotate(45deg);
   background-color: hsl(0, 77%, 58%);
   box-shadow: 1px 1px 10px 1px #111, inset 1px 1px 10px 1px #222;
@@ -394,13 +394,42 @@ p {
     width: 2.5rem;
     height: 2.5rem;
   }
-  .new-task-btn {
+  .view-form-btn {
     padding: 0.6rem;
     width: 2rem;
     height: 2rem;
   }
-  .new-task-btn svg {
+  .view-form-btn svg {
     width: 1rem;
     height: 1rem;
   }
+}
+
+.swal-footer {
+  padding: 0.5rem 1rem;
+  border: 1px solid ghostwhite;
+  /* width: fit-content;
+  height: fit-content; */
+  border-radius: 5px;
+  background-color: orange;
+  color: black;
+  border: 2px solid ghostwhite;
+  margin: 0 auto;
+}
+
+.regular {
+  background-color: hsl(326, 50%, 40%);
+  color: ghostwhite;
+}
+.urgent {
+  background-color: hsl(0, 50%, 40%);
+  color: ghostwhite;
+}
+.flexible {
+  background-color: hsl(203, 55%, 35%);
+  color: ghostwhite;
+}
+.trivial {
+  background-color: hsl(150, 55%, 27%);
+  color: ghostwhite;
 }

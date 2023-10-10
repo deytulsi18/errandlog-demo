@@ -1,4 +1,4 @@
-const newTaskBtn = document.querySelector(".new-task-btn");
+const viewFormBtn = document.querySelector(".view-form-btn");
 const container2 = document.querySelector(".container-2");
 const container3 = document.querySelector(".container-3");
 
@@ -32,7 +32,7 @@ const loadTasks = () => {
       // );
 
       const myHTML = `
-        <div class="${taskId} errand task-${taskPriority}">
+        <div id="t${taskId}" class="errand task-${taskPriority}">
           <div class="post-priority">${taskPriority}</div>
           <div class="post-title">
             <h3>${taskTitle}</h3>
@@ -45,73 +45,72 @@ const loadTasks = () => {
       container3.innerHTML = myHTML + container3.innerHTML;
     });
 
-    document.querySelectorAll(".view-btn").forEach((elem) => {
-      const parentOfParent = elem.parentElement.parentElement;
-      // console.log(parentOfParent);
-      elem.addEventListener("click", () => {
-        const currTaskTitle = parentOfParent
-          .querySelector(".post-title")
-          .querySelector("h3").innerText;
-        const currTaskDesc = parentOfParent
-          .querySelector(".post-desc")
-          .querySelector("p").innerText;
-        const classNamesOfElem = parentOfParent.className;
-        const currTaskId = classNamesOfElem.slice(
-          0,
-          classNamesOfElem.indexOf(" ", 0)
-        );
+    // Swal.fire("sucess", "dom content loaded").then(() => {
+    tasks.forEach((task) => {
+      const taskTitle = task.title;
+      const taskDesc = task.desc;
+      const taskPriority = task.priority;
+      const taskId = task.id;
 
-        Swal.fire({
-          icon: "warning",
-          title: `${currTaskTitle}`,
-          // [Id: ${currTaskId}]<br>`,
-          text: `${currTaskDesc}`,
-          showCloseButton: true,
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "Completed",
-          showCancelButton: true,
-          cancelButtonText: "Exit",
-          showDenyButton: true,
-          denyButtonText: "Delete",
-          denyButtonColor: "#d33",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire({
-              icon: "success",
-              title: "Task Completed",
-              text: "You have sucessfully completed the Task.",
-            });
-          } else if (result.isDenied) {
-            Swal.fire({
-              title: "Are you sure?",
-              text: "You won't be able to revert this!",
-              icon: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#d33",
-              cancelButtonColor: "#3085d6",
-              confirmButtonText: "Yes, delete it!",
-            }).then((result) => {
-              if (result.isConfirmed) {
-                // console.log(currTaskId);
-                deleteTask(currTaskId);
-                Swal.fire(
-                  "Deleted!",
-                  "Your file has been deleted.",
-                  "success"
-                ).then(() => {
-                  location.reload();
-                });
-              }
-            });
-          }
+      document
+        .querySelector(`#t${taskId} .view-btn`)
+        .addEventListener("click", () => {
+          // console.log(`t${taskId}`);
+          Swal.fire({
+            icon: "info",
+            title: `${taskTitle}`,
+            // [Id: t${taskId}]<br>`,
+            text: `${taskDesc}`,
+            html: `${taskDesc}<br><br><div class="swal-footer ${taskPriority}">This task is ${taskPriority}.</div>`,
+            showCloseButton: true,
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Completed",
+            showCancelButton: true,
+            cancelButtonText: "Exit",
+            showDenyButton: true,
+            denyButtonText: "Delete",
+            denyButtonColor: "#d33",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                icon: "success",
+                title: "Task Completed",
+                text: "You have sucessfully completed the Task.",
+              });
+            } else if (result.isDenied) {
+              Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Yes, delete it!",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // console.log(=taskId);
+                  deleteTask(taskId);
+                  Swal.fire(
+                    "Deleted!",
+                    "Your file has been deleted.",
+                    "success"
+                  ).then(() => {
+                    document.querySelector(`#t${taskId}`).remove();
+                    // console.log(`Task t${taskId} is removed`);
+                  });
+                }
+              });
+            }
+          });
         });
-      });
     });
+    // });
   }
 };
 
 const addNewTask = (title, desc, priority, id) => {
   const taskId = id;
+  const taskPriority = priority;
   const taskTitle = truncateString(title, 50);
   const taskDesc = truncateString(desc, 500);
 
@@ -124,13 +123,13 @@ const addNewTask = (title, desc, priority, id) => {
         id: taskId,
         title: taskTitle,
         desc: taskDesc,
-        priority: priority,
+        priority: taskPriority,
       },
     ])
   );
 
   const myHTML = `
-        <div class="${taskId} errand task-${priority}">
+        <div id="t${taskId}" class="errand task-${priority}">
           <div class="post-priority">${priority}</div>
           <div class="post-title">
             <h3>${taskTitle}</h3>
@@ -141,6 +140,54 @@ const addNewTask = (title, desc, priority, id) => {
           </div>
         </div>`;
   container3.innerHTML = myHTML + container3.innerHTML;
+//   document
+//     .querySelector(`#t${taskId} .view-btn`)
+//     .addEventListener("click", () => {
+//       Swal.fire({
+//         icon: "info",
+//         title: `${taskTitle}`,
+//         // [Id: t${taskId}]<br>`,
+//         text: `${taskDesc}`,
+//         html: `${taskDesc}<br><br><div class="swal-footer ${taskPriority}">This task is ${taskPriority}.</div>`,
+//         showCloseButton: true,
+//         confirmButtonColor: "#3085d6",
+//         confirmButtonText: "Completed",
+//         showCancelButton: true,
+//         cancelButtonText: "Exit",
+//         showDenyButton: true,
+//         denyButtonText: "Delete",
+//         denyButtonColor: "#d33",
+//       }).then((result) => {
+//         if (result.isConfirmed) {
+//           Swal.fire({
+//             icon: "success",
+//             title: "Task Completed",
+//             text: "You have sucessfully completed the Task.",
+//           });
+//         } else if (result.isDenied) {
+//           Swal.fire({
+//             title: "Are you sure?",
+//             text: "You won't be able to revert this!",
+//             icon: "warning",
+//             showCancelButton: true,
+//             confirmButtonColor: "#d33",
+//             cancelButtonColor: "#3085d6",
+//             confirmButtonText: "Yes, delete it!",
+//           }).then((result) => {
+//             if (result.isConfirmed) {
+//               deleteTask(taskId);
+//               Swal.fire(
+//                 "Deleted!",
+//                 "Your file has been deleted.",
+//                 "success"
+//               ).then(() => {
+//                 document.querySelector(`#t${taskId}`).remove();
+//               });
+//             }
+//           });
+//         }
+//       });
+//     });
 };
 
 const deleteTask = (taskId) => {
@@ -159,6 +206,14 @@ submitBtn.addEventListener("click", (event) => {
   const title = postTitle.value;
   const desc = postDesc.value;
   const priority = postPriority.value;
+
+  // using nanoid to generate a unique id
+  const alphabet =
+    "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz-";
+  const nanoid = customAlphabet(alphabet, 21);
+  const id = nanoid();
+
+  console.log(id);
 
   if (title == "" || desc == "") {
     // console.log("Fields cannot be empty.");
@@ -182,43 +237,84 @@ submitBtn.addEventListener("click", (event) => {
 
   // console.log(`Task:\nTitle: ${title}\nDesc: ${desc}\nPriority: ${priority}`);
 
-  // using nanoid to generate a unique id
-  const alphabet = "0123456789abcdefghijklmnopqrstuvwxyz";
-  const nanoid = customAlphabet(alphabet, 10);
-  const taskId = nanoid();
+  const maxTaskLimit = 10;
+  const taskWarningThreshold = 5;
 
-  // let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
+  let tasks = Array.from(JSON.parse(localStorage.getItem("tasks") || "[]"));
 
-  // tasks.forEach((task) => {
-  //   if (task.id == taskId) {
-  //     Swal.fire({
-  //       icon: "info",
-  //       title: "Oops...",
-  //       text: "This task already exists!",
-  //     });
-  //     return;
-  //   }
-  // });
+  // if (tasks.length > 0) {
+  //   tasks.forEach((task) => {
+  //     if (task.id == id) {
+  //   console.log("duplicate found");
+  //       Swal.fire({
+  //         icon: "info",
+  //         title: "Oops...",
+  //         text: "This task already exists!",
+  //       });
+  //       return;
+  //     }
+  //   });
+  //   console.log("all unique");
+  // }
 
-  addNewTask(title, desc, priority, taskId);
+  if (tasks.length > maxTaskLimit - 1) {
+    Swal.fire({
+      icon: "warning",
+      title: "Task productivity limit reached!",
+      text: "You can have no more than 10 pending tasks. Complete the pending tasks to add more.",
+    });
+    viewFormBtn.click();
+    return;
+  } else {
+    if (tasks.length > taskWarningThreshold - 1) {
+      Swal.fire({
+        icon: "warning",
+        title: "Task productivity warning!",
+        text: "It is suggested to have 5 or less tasks pending, however you can have upto 10 tasks pending for sustainable productivity.",
+        showCloseButton: true,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Yes, add task",
+        showDenyButton: true,
+        denyButtonText: "cancel",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          addNewTask(title, desc, priority, id);
+          postTitle.value = "";
+          postDesc.value = "";
+          postPriority.value = "regular";
 
-  postTitle.value = "";
-  postDesc.value = "";
-  postPriority.value = "";
-  container2.classList.toggle("collapse-div");
+          Swal.fire({
+            title: "Success",
+            text: "Your task has been added!",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+          }).then(() => {
+            viewFormBtn.click();
+            location.reload();
+          });
+        }
+      });
+    } else {
+      addNewTask(title, desc, priority, id);
+      postTitle.value = "";
+      postDesc.value = "";
+      postPriority.value = "regular";
 
-  Swal.fire({
-    title: "Success",
-    text: "Your task has been added!",
-    icon: "success",
-    confirmButtonColor: "#3085d6",
-  }).then(() => {
-    location.reload();
-  });
+      Swal.fire({
+        title: "Success",
+        text: "Your task has been added!",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+      }).then(() => {
+        viewFormBtn.click();
+        location.reload();
+      });
+    }
+  }
 });
 
-newTaskBtn.addEventListener("click", () => {
+viewFormBtn.addEventListener("click", () => {
   // console.log("working!");
-  newTaskBtn.classList.toggle("active-new-task-btn");
+  viewFormBtn.classList.toggle("active-view-form-btn");
   container2.classList.toggle("collapse-div");
 });
