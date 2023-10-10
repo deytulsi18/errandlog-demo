@@ -18,14 +18,102 @@ const escapeHtml = (str) => {
     .replace(/\//g, "&#x2F;");
 };
 
-console.log(escapeHtml("&#128507;"));
-
 const truncateString = (str, maxLength) => {
   if (str.length > maxLength) {
     return str.slice(0, maxLength) + "...";
   } else {
     return str;
   }
+};
+
+const insertPostIntoHTMLDynamically = (title, desc, priority, id) => {
+  const errandDiv = document.createElement("div");
+  errandDiv.id = id;
+  errandDiv.classList.add("errand");
+  errandDiv.classList.add(`task-${priority}`);
+
+  const postPriorityDiv = document.createElement("div");
+  postPriorityDiv.classList.add("post-priority");
+  postPriorityDiv.innerText = priority;
+
+  const postTitleDiv = document.createElement("div");
+  postTitleDiv.classList.add("post-title");
+
+  const taskTitleHeading = document.createElement("h3");
+  taskTitleHeading.innerText = title;
+
+  const viewBtnDiv = document.createElement("div");
+  viewBtnDiv.classList.add("view-btn");
+  viewBtnDiv.classList.add("btn");
+  viewBtnDiv.innerText = "View";
+
+  const postDescDiv = document.createElement("div");
+  postDescDiv.classList.add("post-desc");
+
+  const taskDescPara = document.createElement("p");
+  taskDescPara.innerText = desc;
+
+  postDescDiv.appendChild(taskDescPara);
+  postTitleDiv.appendChild(taskTitleHeading);
+  postTitleDiv.appendChild(viewBtnDiv);
+
+  errandDiv.appendChild(postPriorityDiv);
+  errandDiv.appendChild(postTitleDiv);
+  errandDiv.appendChild(postDescDiv);
+
+  //   main.appendChild(errandDiv);
+  container3.insertBefore(errandDiv, container3.firstChild);
+};
+
+const addEventListenerForPost = (taskTitle, taskDesc, taskPriority, taskId) => {
+  document
+    .querySelector(`#${taskId} .view-btn`)
+    .addEventListener("click", () => {
+      Swal.fire({
+        icon: "info",
+        title: `${taskTitle}`,
+        // [Id: {taskId}]<br>`,
+        text: `${taskDesc}`,
+        html: `${taskDesc}<br><br><div class="swal-footer ${taskPriority}">This task is ${taskPriority}.</div>`,
+        showCloseButton: true,
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Completed",
+        showCancelButton: true,
+        cancelButtonText: "Exit",
+        showDenyButton: true,
+        denyButtonText: "Delete",
+        denyButtonColor: "#d33",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: "success",
+            title: "Task Completed",
+            text: "You have sucessfully completed the Task.",
+          });
+        } else if (result.isDenied) {
+          Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              deleteTask(taskId);
+              Swal.fire(
+                "Deleted!",
+                "Your file has been deleted.",
+                "success"
+              ).then(() => {
+                document.querySelector(`#${taskId}`).remove();
+              });
+            }
+          });
+        }
+      });
+    });
 };
 
 const loadTasks = () => {
@@ -61,95 +149,9 @@ const loadTasks = () => {
       //   `Task:\nTitle: ${taskTitle}\nDesc: ${taskDesc}\nPriority: ${taskPriority}`
       // );
 
-      const myHTML = `
-      <div id="t${taskId}" class="errand task-${taskPriority}">
-      <div class="post-priority">${taskPriority}</div>
-      <div class="post-title">
-        <h3>${taskTitle}</h3>
-        <div class="view-btn btn">View</div>
-      </div>
-      <div class="post-desc">
-        <p>${taskDesc}</p>
-      </div>
-    </div>`;
-      container3.innerHTML = myHTML + container3.innerHTML;
-    });
+      insertPostIntoHTMLDynamically(taskTitle, taskDesc, taskPriority, taskId);
 
-    // Swal.fire("sucess", "dom content loaded").then(() => {
-    tasks.forEach((task) => {
-      // This is for prevention of xss
-      // ...
-      const dummyTaskTitleDiv = document.createElement("div");
-      dummyTaskTitleDiv.innerHTML = task.title;
-      const dummyTaskDescDiv = document.createElement("div");
-      dummyTaskDescDiv.innerHTML = task.desc;
-      const dummyTaskPriorityDiv = document.createElement("div");
-      dummyTaskPriorityDiv.innerHTML = task.priority;
-      const dummyTaskIdDiv = document.createElement("div");
-      dummyTaskIdDiv.innerHTML = task.id;
-
-      const taskTitle = dummyTaskTitleDiv.textContent;
-      const taskDesc = dummyTaskDescDiv.textContent;
-      const taskPriority = dummyTaskPriorityDiv.textContent;
-      const taskId = dummyTaskIdDiv.textContent;
-
-      dummyTaskTitleDiv.remove();
-      dummyTaskDescDiv.remove();
-      dummyTaskPriorityDiv.remove();
-      dummyTaskIdDiv.remove();
-      // ...
-
-      document
-        .querySelector(`#t${taskId} .view-btn`)
-        .addEventListener("click", () => {
-          // console.log(`t${taskId}`);
-          Swal.fire({
-            icon: "info",
-            title: `${taskTitle}`,
-            // [Id: t${taskId}]<br>`,
-            text: `${taskDesc}`,
-            html: `${taskDesc}<br><br><div class="swal-footer ${taskPriority}">This task is ${taskPriority}.</div>`,
-            showCloseButton: true,
-            confirmButtonColor: "#3085d6",
-            confirmButtonText: "Completed",
-            showCancelButton: true,
-            cancelButtonText: "Exit",
-            showDenyButton: true,
-            denyButtonText: "Delete",
-            denyButtonColor: "#d33",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire({
-                icon: "success",
-                title: "Task Completed",
-                text: "You have sucessfully completed the Task.",
-              });
-            } else if (result.isDenied) {
-              Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#d33",
-                cancelButtonColor: "#3085d6",
-                confirmButtonText: "Yes, delete it!",
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  // console.log(=taskId);
-                  deleteTask(taskId);
-                  Swal.fire(
-                    "Deleted!",
-                    "Your file has been deleted.",
-                    "success"
-                  ).then(() => {
-                    document.querySelector(`#t${taskId}`).remove();
-                    // console.log(`Task t${taskId} is removed`);
-                  });
-                }
-              });
-            }
-          });
-        });
+      addEventListenerForPost(taskTitle, taskDesc, taskPriority, taskId);
     });
     // });
   }
@@ -201,66 +203,22 @@ const addNewTask = (title, desc, priority, id) => {
     ])
   );
 
-  const myHTML = `
-  <div id="t${taskId}" class="errand task-${taskPriority}">
-  <div class="post-priority">${taskPriority}</div>
-  <div class="post-title">
-    <h3>${taskTitle}</h3>
-    <div class="view-btn btn">View</div>
-  </div>
-  <div class="post-desc">
-    <p>${taskDesc}</p>
-  </div>
-</div>`;
-  container3.innerHTML = myHTML + container3.innerHTML;
-  document
-    .querySelector(`#t${taskId} .view-btn`)
-    .addEventListener("click", () => {
-      Swal.fire({
-        icon: "info",
-        title: `${taskTitle}`,
-        // [Id: t${taskId}]<br>`,
-        text: `${taskDesc}`,
-        html: `${taskDesc}<br><br><div class="swal-footer ${taskPriority}">This task is ${taskPriority}.</div>`,
-        showCloseButton: true,
-        confirmButtonColor: "#3085d6",
-        confirmButtonText: "Completed",
-        showCancelButton: true,
-        cancelButtonText: "Exit",
-        showDenyButton: true,
-        denyButtonText: "Delete",
-        denyButtonColor: "#d33",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            icon: "success",
-            title: "Task Completed",
-            text: "You have sucessfully completed the Task.",
-          });
-        } else if (result.isDenied) {
-          Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#d33",
-            cancelButtonColor: "#3085d6",
-            confirmButtonText: "Yes, delete it!",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              deleteTask(taskId);
-              Swal.fire(
-                "Deleted!",
-                "Your file has been deleted.",
-                "success"
-              ).then(() => {
-                document.querySelector(`#t${taskId}`).remove();
-              });
-            }
-          });
-        }
-      });
-    });
+  //   const myHTML = `
+  //   <div id="${taskId}" class="errand task-${taskPriority}">
+  //   <div class="post-priority">${taskPriority}</div>
+  //   <div class="post-title">
+  //     <h3>${taskTitle}</h3>
+  //     <div class="view-btn btn">View</div>
+  //   </div>
+  //   <div class="post-desc">
+  //     <p>${taskDesc}</p>
+  //   </div>
+  // </div>`;
+  //   container3.innerHTML = myHTML + container3.innerHTML;
+
+  insertPostIntoHTMLDynamically(taskTitle, taskDesc, taskPriority, taskId);
+
+  addEventListenerForPost(taskTitle, taskDesc, taskPriority, taskId);
 };
 
 const deleteTask = (taskId) => {
@@ -284,7 +242,7 @@ submitBtn.addEventListener("click", (event) => {
   const alphabet =
     "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz-";
   const nanoid = customAlphabet(alphabet, 21);
-  const id = nanoid();
+  const id = `t${nanoid()}`;
 
   if (title == "" || desc == "") {
     // console.log("Fields cannot be empty.");
@@ -361,7 +319,6 @@ submitBtn.addEventListener("click", (event) => {
             confirmButtonColor: "#3085d6",
           }).then(() => {
             viewFormBtn.click();
-            location.reload();
           });
         }
       });
@@ -378,7 +335,6 @@ submitBtn.addEventListener("click", (event) => {
         confirmButtonColor: "#3085d6",
       }).then(() => {
         viewFormBtn.click();
-        location.reload();
       });
     }
   }
