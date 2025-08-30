@@ -45,6 +45,16 @@
     U+FEFF, U+FFFD;
 }
 
+/*** Caveat ***/
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/caveat/v22/Wnz6HAc5bAfYB2Q7ZjYY.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 body {
   font-family: sans-serif;
   background-color: #888;
@@ -214,10 +224,10 @@ p {
 .input-div .btn {
   background-color: hsl(118, 50%, 40%);
   margin: 0 auto;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 2.5rem;
   border: 2px solid ghostwhite;
   box-shadow: 1px 1px 10px 1px #111;
-  border-radius: 15px;
+  border-radius: 33px;
   margin: 0.5rem auto;
   font-size: 1.25rem;
   color: #fff;
@@ -302,18 +312,18 @@ p {
   box-shadow: inset 1px 1px 10px 1px hsl(333, 75%, 26%);
 }
 
-.task-flexible .post-title {
-  background-color: hsl(203, 50%, 27%);
-}
-.task-flexible .post-desc {
-  background-color: hsl(203, 55%, 35%);
-}
-
 .task-trivial .post-title {
   background-color: hsl(150, 50%, 20%);
 }
 .task-trivial .post-desc {
   background-color: hsl(150, 55%, 27%);
+}
+
+.task-flexible .post-title {
+  background-color: hsl(203, 50%, 27%);
+}
+.task-flexible .post-desc {
+  background-color: hsl(203, 55%, 35%);
 }
 
 .task-urgent .post-title {
@@ -322,13 +332,60 @@ p {
 .task-urgent .post-desc {
   background-color: hsl(0, 50%, 40%);
 }
+
+.task-critical .post-title {
+  background-color: hsl(0, 65%, 40%);
+}
+.task-critical .post-desc {
+  background-color: #121212;  
+  box-shadow: inset 1px 1px 10px 1px hsla(0, 0%, 85%, 0.125);
+}
+.task-critical .post-title .view-btn {
+  background-color: #111;
+  padding: 0.5rem;
+  width: 6.5rem;
+  height: 3rem;
+  word-wrap: break-word;
+}
+.task-critical .post-title .view-btn:active {
+  background-color: #232323;
+  box-shadow: inset 1px 1px 10px 1px hsla(0, 100%, 50%, 0.25);
+  box-shadow: 1px 1px 10px 1px #111;
+}
+
+.task-special .post-title {
+  background-color: hsl(260, 40%, 40%);
+}
+.task-special .post-desc {
+  background-color: goldenrod;
+  box-shadow: inset 1px 1px 10px 1px hsla(333, 74%, 26%, 0.25);
+  color: #000 !important;
+}
+.task-special .post-desc p{
+  color: #000 !important;
+}
+
+.task-special-1 .post-title {
+  background-color: hsl(260, 30%, 25%);
+}
+.task-special-1 .post-desc {
+  background-color: hsl(326, 50%, 40%);
+}
+
+.task-special-2 .post-title {
+  background-color: hsl(260, 30%, 25%);
+}
+.task-special-2 .post-desc {
+  background-color: hsl(260, 40%, 40%);
+}
+
 .post-priority {
   padding: 0.5rem 1rem;
   border: 1px solid ghostwhite;
   width: fit-content;
   height: fit-content;
   border-radius: 10px 10px 0 0;
-  background-color: orange;
+  background-color: hsl(36, 100%, 50%);
   color: black;
   border: 2px solid ghostwhite;
   border-bottom: 0px;
@@ -405,20 +462,31 @@ p {
   }
 }
 
-.swal-footer {
-  padding: 0.5rem 1rem;
-  border: 1px solid ghostwhite;
-  /* width: fit-content;
-  height: fit-content; */
-  border-radius: 5px;
-  background-color: orange;
+.swal-body {
+  padding: 1rem 1rem;
+  border: 2px solid black;
+  border-bottom: none;
+  border-radius:  5px 5px 0 0;
+  background-color: beige;
   color: black;
-  border: 2px solid ghostwhite;
   margin: 0 auto;
 }
 
-.regular {
-  background-color: hsl(326, 50%, 40%);
+.swal-footer {
+  padding: 0.5rem 1rem;
+  border: 2px solid black;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  background-color: orange;
+  color: black;
+  font-family: "Caveat", sans-serif;
+  font-size: 1.66rem;
+  /* border: 2px solid ghostwhite; */
+  margin: 0 auto;
+}
+
+.critical {
+  background-color: black;
   color: ghostwhite;
 }
 .urgent {

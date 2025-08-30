@@ -74,7 +74,7 @@ const addEventListenerForPost = (taskTitle, taskDesc, taskPriority, taskId) => {
         title: `${taskTitle}`,
         // [Id: {taskId}]<br>`,
         text: `${taskDesc}`,
-        html: `${taskDesc}<br><br><div class="swal-footer ${taskPriority}">This task is ${taskPriority}.</div>`,
+        html: `<div class="swal-body">${taskDesc}</div><div class="swal-footer ${taskPriority}">This task is ${taskPriority}.</div>`,
         showCloseButton: true,
         confirmButtonColor: "#3085d6",
         confirmButtonText: "Completed",
@@ -310,7 +310,7 @@ submitBtn.addEventListener("click", (event) => {
           addNewTask(title, desc, priority, id);
           postTitle.value = "";
           postDesc.value = "";
-          postPriority.value = "regular";
+          postPriority.value = "critical";
 
           Swal.fire({
             title: "Success",
@@ -326,7 +326,7 @@ submitBtn.addEventListener("click", (event) => {
       addNewTask(title, desc, priority, id);
       postTitle.value = "";
       postDesc.value = "";
-      postPriority.value = "regular";
+      postPriority.value = "critical";
 
       Swal.fire({
         title: "Success",
