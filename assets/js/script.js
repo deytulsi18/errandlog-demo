@@ -26,15 +26,33 @@ const truncateString = (str, maxLength) => {
   }
 };
 
-const insertPostIntoHTMLDynamically = (title, desc, priority, id) => {
+const insertPostIntoHTMLDynamically = (title, desc, priority, id, timestamp) => {
   const errandDiv = document.createElement("div");
   errandDiv.id = id;
   errandDiv.classList.add("errand");
   errandDiv.classList.add(`task-${priority}`);
 
+  const postTagsDiv = document.createElement("div");
+  postTagsDiv.classList.add("post-tags");
+
   const postPriorityDiv = document.createElement("div");
   postPriorityDiv.classList.add("post-priority");
   postPriorityDiv.innerText = priority;
+
+  const postTimestampDiv = document.createElement("div");
+  postTimestampDiv.classList.add("post-timestamp");
+  
+  const timestampList = timestamp.split(" ");
+  
+  const postTimestampSpan1 = document.createElement("span");
+  postTimestampSpan1.classList.add("time");
+  postTimestampSpan1.innerText = timestampList[0];
+  postTimestampDiv.appendChild(postTimestampSpan1);
+
+  const postTimestampSpan2 = document.createElement("span");
+  postTimestampSpan2.classList.add("date");
+  postTimestampSpan2.innerText = timestampList[1];
+  postTimestampDiv.appendChild(postTimestampSpan2);
 
   const postTitleDiv = document.createElement("div");
   postTitleDiv.classList.add("post-title");
@@ -57,7 +75,9 @@ const insertPostIntoHTMLDynamically = (title, desc, priority, id) => {
   postTitleDiv.appendChild(taskTitleHeading);
   postTitleDiv.appendChild(viewBtnDiv);
 
-  errandDiv.appendChild(postPriorityDiv);
+  errandDiv.appendChild(postTagsDiv);
+  postTagsDiv.appendChild(postPriorityDiv);
+  postTagsDiv.appendChild(postTimestampDiv);
   errandDiv.appendChild(postTitleDiv);
   errandDiv.appendChild(postDescDiv);
 
@@ -65,7 +85,7 @@ const insertPostIntoHTMLDynamically = (title, desc, priority, id) => {
   container3.insertBefore(errandDiv, container3.firstChild);
 };
 
-const addEventListenerForPost = (taskTitle, taskDesc, taskPriority, taskId) => {
+const addEventListenerForPost = (taskTitle, taskDesc, taskPriority, taskId, taskTimeStamp) => {
   document
     .querySelector(`#${taskId} .view-btn`)
     .addEventListener("click", () => {
@@ -74,7 +94,7 @@ const addEventListenerForPost = (taskTitle, taskDesc, taskPriority, taskId) => {
         title: `${taskTitle}`,
         // [Id: {taskId}]<br>`,
         text: `${taskDesc}`,
-        html: `<div class="swal-body">${taskDesc}</div><div class="swal-footer ${taskPriority}">This task is ${taskPriority}.</div>`,
+        html: `<div class="swal-body">${taskDesc}</div><div class="swal-footer ${taskPriority}">This task is ${taskPriority},<br> <span style="color:#bbb;">Timestamp -> ${taskTimeStamp}</span></div>`,
         showCloseButton: true,
         confirmButtonColor: "#3085d6",
         confirmButtonText: "Completed",
@@ -133,31 +153,35 @@ const loadTasks = () => {
       dummyTaskPriorityDiv.innerHTML = task.priority;
       const dummyTaskIdDiv = document.createElement("div");
       dummyTaskIdDiv.innerHTML = task.id;
+      const dummyTaskTimeStampDiv = document.createElement("div");
+      dummyTaskTimeStampDiv.innerHTML = task.timestamp;
 
       const taskTitle = escapeHtml(dummyTaskTitleDiv.textContent);
       const taskDesc = escapeHtml(dummyTaskDescDiv.textContent);
       const taskPriority = escapeHtml(dummyTaskPriorityDiv.textContent);
       const taskId = escapeHtml(dummyTaskIdDiv.textContent);
+      const taskTimeStamp = escapeHtml(dummyTaskTimeStampDiv.textContent);
 
       dummyTaskTitleDiv.remove();
       dummyTaskDescDiv.remove();
       dummyTaskPriorityDiv.remove();
       dummyTaskIdDiv.remove();
+      dummyTaskTimeStampDiv.remove();   
       // ...
 
       // console.log(
       //   `Task:\nTitle: ${taskTitle}\nDesc: ${taskDesc}\nPriority: ${taskPriority}`
       // );
 
-      insertPostIntoHTMLDynamically(taskTitle, taskDesc, taskPriority, taskId);
+      insertPostIntoHTMLDynamically(taskTitle, taskDesc, taskPriority, taskId, taskTimeStamp);
 
-      addEventListenerForPost(taskTitle, taskDesc, taskPriority, taskId);
+      addEventListenerForPost(taskTitle, taskDesc, taskPriority, taskId, taskTimeStamp);
     });
     // });
   }
 };
 
-const addNewTask = (title, desc, priority, id) => {
+const addNewTask = (title, desc, priority, id, timestamp) => {
   // This is for prevention of xss
   // ...
   const dummyTaskTitleDiv = document.createElement("div");
@@ -168,6 +192,8 @@ const addNewTask = (title, desc, priority, id) => {
   dummyTaskPriorityDiv.innerHTML = priority;
   const dummyTaskIdDiv = document.createElement("div");
   dummyTaskIdDiv.innerHTML = id;
+  const dummyTaskTimeStampDiv = document.createElement("div");
+  dummyTaskTimeStampDiv.innerHTML = timestamp;
 
   const taskTitle = escapeHtml(
     truncateString(dummyTaskTitleDiv.textContent, 50)
@@ -177,11 +203,13 @@ const addNewTask = (title, desc, priority, id) => {
   );
   const taskPriority = escapeHtml(dummyTaskPriorityDiv.textContent);
   const taskId = escapeHtml(dummyTaskIdDiv.textContent);
+  const taskTimeStamp = escapeHtml(dummyTaskTimeStampDiv.textContent);
 
   dummyTaskTitleDiv.remove();
   dummyTaskDescDiv.remove();
   dummyTaskPriorityDiv.remove();
   dummyTaskIdDiv.remove();
+  dummyTaskTimeStampDiv.remove();
   // ...
 
   // const taskId = id;
@@ -199,6 +227,7 @@ const addNewTask = (title, desc, priority, id) => {
         title: taskTitle,
         desc: taskDesc,
         priority: taskPriority,
+        timestamp: taskTimeStamp
       },
     ])
   );
@@ -216,9 +245,9 @@ const addNewTask = (title, desc, priority, id) => {
   // </div>`;
   //   container3.innerHTML = myHTML + container3.innerHTML;
 
-  insertPostIntoHTMLDynamically(taskTitle, taskDesc, taskPriority, taskId);
+  insertPostIntoHTMLDynamically(taskTitle, taskDesc, taskPriority, taskId, taskTimeStamp);
 
-  addEventListenerForPost(taskTitle, taskDesc, taskPriority, taskId);
+  addEventListenerForPost(taskTitle, taskDesc, taskPriority, taskId, taskTimeStamp);
 };
 
 const deleteTask = (taskId) => {
@@ -232,11 +261,45 @@ const deleteTask = (taskId) => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
+let getTimeStamp = () => {
+  const date = new Date();
+
+  // Extract hours, minutes, and seconds using UTC methods for consistency
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+
+  // Pad single-digit numbers with a leading zero for consistent formatting
+  const pad = (num) => num.toString().padStart(2, '0');
+
+  let day = date.getDate();
+  let month = date.getMonth() + 1; // Month is 0-indexed, so add 1
+  let year = date.getFullYear() % 100; // Get the last two digits of the year
+
+  // Add leading zeros if day or month is a single digit
+  if (day < 10) {
+    day = "0" + day;
+  }
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (year < 10) {
+    // For years like 2005 (05)
+    year = "0" + year;
+  }
+
+  const formattedTime = `${pad(hours)}:${pad(minutes)}`
+  const formattedDate = `${day}-${month}-${year}`;
+  const result = `${formattedTime} ${formattedDate}`;
+  return result;
+};
+
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
   const title = postTitle.value;
   const desc = postDesc.value;
   const priority = postPriority.value;
+  const timestamp = getTimeStamp();
 
   // using nanoid to generate a unique id
   const alphabet =
@@ -307,7 +370,7 @@ submitBtn.addEventListener("click", (event) => {
         denyButtonText: "cancel",
       }).then((result) => {
         if (result.isConfirmed) {
-          addNewTask(title, desc, priority, id);
+          addNewTask(title, desc, priority, id, timestamp);
           postTitle.value = "";
           postDesc.value = "";
           postPriority.value = "critical";
@@ -323,7 +386,7 @@ submitBtn.addEventListener("click", (event) => {
         }
       });
     } else {
-      addNewTask(title, desc, priority, id);
+      addNewTask(title, desc, priority, id, timestamp);
       postTitle.value = "";
       postDesc.value = "";
       postPriority.value = "critical";

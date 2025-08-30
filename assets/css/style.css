@@ -47,12 +47,15 @@
 
 /*** Caveat ***/
 @font-face {
-  font-family: 'Caveat';
+  font-family: "Caveat";
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/caveat/v22/Wnz6HAc5bAfYB2Q7ZjYY.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url(https://fonts.gstatic.com/s/caveat/v22/Wnz6HAc5bAfYB2Q7ZjYY.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 body {
@@ -337,7 +340,7 @@ p {
   background-color: hsl(0, 65%, 40%);
 }
 .task-critical .post-desc {
-  background-color: #121212;  
+  background-color: #121212;
   box-shadow: inset 1px 1px 10px 1px hsla(0, 0%, 85%, 0.125);
 }
 .task-critical .post-title .view-btn {
@@ -361,7 +364,7 @@ p {
   box-shadow: inset 1px 1px 10px 1px hsla(333, 74%, 26%, 0.25);
   color: #000 !important;
 }
-.task-special .post-desc p{
+.task-special .post-desc p {
   color: #000 !important;
 }
 
@@ -378,7 +381,11 @@ p {
 .task-special-2 .post-desc {
   background-color: hsl(260, 40%, 40%);
 }
-
+.post-tags {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+}
 .post-priority {
   padding: 0.5rem 1rem;
   border: 1px solid ghostwhite;
@@ -389,8 +396,30 @@ p {
   color: black;
   border: 2px solid ghostwhite;
   border-bottom: 0px;
-  box-shadow: 1px 1px 10px 1px #111;
+  /* box-shadow: 1px 1px 10px 1px #111; */
+  /* box-shadow: 7.5px 0 12.5px -7.5px rgb(0, 0, 0); */
 }
+.post-timestamp {
+  color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 0 0.75rem;
+}
+.post-timestamp .time {
+  color: #aaa;
+  padding: 0 0.25rem;
+}
+.post-timestamp .date {
+  /* color: hsl(60, 100%, 75%); */
+  color: hsl(40, 75%, 50%);
+  padding: 0 0.25rem;
+}
+
 #dropdown-div {
   display: flex;
   justify-content: center;
@@ -466,7 +495,7 @@ p {
   padding: 1rem 1rem;
   border: 2px solid black;
   border-bottom: none;
-  border-radius:  5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
   background-color: beige;
   color: black;
   margin: 0 auto;
